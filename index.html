@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kopi & Co. — Specialty Coffee House, Kalutara</title>
+<meta name="description" content="Kopi & Co. is a specialty coffee house in Kalutara, Sri Lanka — small-batch roasts, all-day breakfast, and a warm place to sit a while.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/kopi&co logo2.png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Home-page-only styles ---- */
+  .hero{
+    background: var(--espresso);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    padding: 56px 0 0;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
+    align-items: center;
+    padding-bottom: 64px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero h1{
+    font-size: var(--step-5);
+    color: var(--cream);
+    line-height: 1.02;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--copper);
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 42ch;
+    color: rgba(250,246,238,0.78);
+    font-size: var(--step-1);
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:34px; flex-wrap:wrap; }
+  .hero-stats{ display:flex; gap:34px; margin-top:48px; flex-wrap:wrap; }
+  .hero-stats div{ font-family: var(--font-mono); }
+  .hero-stats strong{ display:block; font-size: 1.7rem; color: var(--cream); font-family: var(--font-display); }
+  .hero-stats span{ font-size: 0.78rem; color: rgba(250,246,238,0.55); text-transform:uppercase; letter-spacing:0.08em; }
+
+  .hero-art{ position:relative; }
+  .cup-frame{
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-lg);
+    overflow:hidden;
+    position:relative;
+    box-shadow: var(--shadow-deep);
+  }
+  .cup-frame img{ width:100%; height:100%; object-fit:cover; }
+  .steam-svg{
+    position:absolute;
+    top:-46px; left:50%;
+    transform: translateX(-50%);
+    width:120px; height:80px;
+    opacity:0.85;
+  }
+  .steam-svg path{
+    stroke: rgba(250,246,238,0.6);
+    stroke-width:2.2;
+    fill:none;
+    stroke-linecap:round;
+    animation: steamRise 4s ease-in-out infinite;
+  }
+  .steam-svg path:nth-child(2){ animation-delay: .7s; }
+  .steam-svg path:nth-child(3){ animation-delay: 1.4s; }
+  @keyframes steamRise{
+    0%{ opacity:0; transform: translateY(8px); }
+    35%{ opacity:0.9; }
+    100%{ opacity:0; transform: translateY(-22px); }
+  }
+  .floating-tag{
+    position:absolute;
+    bottom: -22px; left: -22px;
+    background: var(--copper);
+    color: var(--espresso);
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height:1.5;
+    box-shadow: var(--shadow-soft);
+    max-width: 190px;
+  }
+  .floating-tag strong{ display:block; font-family: var(--font-display); font-size:1rem; color: var(--espresso); }
+
+  .wave-edge{
+    display:block;
+    width:100%;
+    height: 64px;
+    margin-top: -1px;
+  }
+
+  /* Feature grid */
+  .feature-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .feature-card{
+    padding: 30px 26px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border:1px solid var(--line);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .feature-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-soft); }
+  .feature-card .icon{
+    width:46px; height:46px;
+    border-radius:50%;
+    background: var(--latte);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 18px;
+  }
+  .feature-card .icon svg{ width:22px; height:22px; color: var(--copper-deep); }
+  .feature-card h3{ font-size: 1.12rem; margin-bottom:8px; }
+  .feature-card p{ font-size: 0.92rem; color: rgba(61,43,31,0.72); }
+
+  /* Menu preview */
+  .menu-preview{ display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
+  .menu-tile{
+    position:relative;
+    border-radius: var(--radius-md);
+    overflow:hidden;
+    aspect-ratio: 1/1.05;
+  }
+  .menu-tile img{ width:100%; height:100%; object-fit:cover; transition: transform .5s var(--ease); }
+  .menu-tile:hover img{ transform: scale(1.06); }
+  .menu-tile-label{
+    position:absolute; inset:auto 0 0 0;
+    background: linear-gradient(to top, rgba(35,25,20,0.88), transparent);
+    color: var(--cream);
+    padding: 36px 18px 18px;
+  }
+  .menu-tile-label .price{ font-family: var(--font-mono); color: var(--copper); font-size:0.85rem; }
+  .menu-tile-label h4{ font-size:1.1rem; margin-top:4px; }
+
+  /* Story split */
+  .story-split{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items:center;
+  }
+  .story-split img{ border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+  .story-split blockquote{
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height:1.3;
+    margin: 0 0 22px;
+    color: var(--ink);
+  }
+  .story-split cite{ font-family: var(--font-mono); font-size:0.85rem; color: var(--copper-deep); font-style:normal; }
+
+  /* Reviews */
+  .review-row{ display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .review-card{
+    background: #fff;
+    border:1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 28px;
+  }
+  .stars{ color: var(--copper); letter-spacing:2px; margin-bottom:14px; }
+  .review-card p{ font-size:0.95rem; color: rgba(61,43,31,0.82); }
+  .review-who{ margin-top:18px; display:flex; align-items:center; gap:10px; font-family: var(--font-mono); font-size:0.82rem; color: var(--ink); }
+  .review-who .dot{ width:7px; height:7px; border-radius:50%; background: var(--sage); }
+
+  /* CTA band */
+  .cta-band{
+    background: var(--copper);
+    border-radius: var(--radius-lg);
+    padding: 56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 32px;
+    flex-wrap:wrap;
+    color: var(--espresso);
+  }
+  .cta-band h2{ font-size: var(--step-2); max-width: 22ch; color: var(--espresso); }
+  .cta-band .btn-dark{ flex-shrink:0; }
+
+  @media (max-width: 980px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:420px; margin:0 auto; }
+    .feature-grid{ grid-template-columns: repeat(2,1fr); }
+    .menu-preview{ grid-template-columns: repeat(2,1fr); }
+    .story-split{ grid-template-columns:1fr; }
+    .story-split .order-img{ order:2; }
+    .review-row{ grid-template-columns:1fr; }
+    .cta-band{ padding:36px; }
+  }
+  @media (max-width:560px){
+    .feature-grid{ grid-template-columns:1fr; }
+    .menu-preview{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand"><span class="mark">Kopi</span>&nbsp;&amp; Co.</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html#visit" class="nav-cta">Find Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow">Kalutara, Sri Lanka</p>
+      <h1>Coffee, brewed slow<br>for a town that<br><em>moves fast.</em></h1>
+      <p class="lede">Small-batch roasted, brewed by hand, served by people who remember your order. Kopi & Co. is a coffee house built for lingering — pull up a chair.</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-primary">View the menu</a>
+        <a href="contact.html" class="btn btn-ghost" style="color:var(--cream); border-color: rgba(250,246,238,0.4);">Get in touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>2018</strong><span>Est. in Kalutara</span></div>
+        <div><strong>06:30</strong><span>Opens daily</span></div>
+        <div><strong>100%</strong><span>Sri Lankan beans</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg class="steam-svg" viewBox="0 0 120 80">
+        <path d="M40 70 Q 30 50, 45 38 Q 55 28, 45 12"/>
+        <path d="M60 70 Q 50 50, 65 38 Q 75 28, 65 12"/>
+        <path d="M80 70 Q 70 50, 85 38 Q 95 28, 85 12"/>
+      </svg>
+      <div class="cup-frame">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80" alt="Latte art in a warm ceramic cup at Kopi & Co.">
+      </div>
+      <div class="floating-tag"><strong>4.9 / 5</strong>from 1,200+ regulars across Kalutara</div>
+    </div>
+  </div>
+  <svg class="wave-edge" viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path d="M0,40 C 360,90 1080,0 1440,40 L1440,70 L0,70 Z" fill="#FAF6EE"/>
+  </svg>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Why people stay a while</p>
+      <h2>Built around the cup, not the counter</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10h13a3 3 0 0 1 0 6h-1M3 10v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-1M6 2v3M10 2v3M14 2v3"/></svg></div>
+        <h3>Small-batch roasting</h3>
+        <p>We roast in lots under 12kg, twice a week, so every bag is within days of the drum.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21a8 8 0 1 0-16 0M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></div>
+        <h3>Baristas who stay</h3>
+        <p>Our crew has been pulling shots together for years — they'll remember your order by your second visit.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 5.6 5.4 5.4 0 0 1 21.3 12c-2.3 4.4-9.3 9-9.3 9Z"/></svg></div>
+        <h3>Sourced with care</h3>
+        <p>Beans from estates in Matale and Kandy, paid above standard rate, traceable to the farmer.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6-9 6-9-6Zm0 6l9 6 9-6"/></svg></div>
+        <h3>A room to settle into</h3>
+        <p>Good light, real plants, and tables spaced for long conversations or a laptop and a quiet hour.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-dim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">From the counter</p>
+      <h2>A few things people order twice</h2>
+    </div>
+    <div class="menu-preview">
+      <div class="menu-tile reveal">
+        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=700&q=80" alt="Pour-over filter coffee">
+        <div class="menu-tile-label"><span class="price">Rs. 650</span><h4>Estate Pour-Over</h4></div>
+      </div>
+      <div class="menu-tile reveal">
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=700&q=80" alt="Flat white with latte art">
+        <div class="menu-tile-label"><span class="price">Rs. 580</span><h4>Flat White</h4></div>
+      </div>
+      <div class="menu-tile reveal">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&q=80" alt="Slice of coffee cake on a plate">
+        <div class="menu-tile-label"><span class="price">Rs. 420</span><h4>Kopi Cake Slice</h4></div>
+      </div>
+    </div>
+    <div class="text-center reveal" style="margin-top:40px; text-align:center;">
+      <a href="menu.html" class="btn btn-dark">See the full menu</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap story-split">
+    <img class="order-img reveal" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80" alt="Barista preparing coffee behind the counter">
+    <div class="reveal">
+      <p class="eyebrow">How it started</p>
+      <blockquote>"We didn't want another place to grab coffee and go. We wanted somewhere worth being late for."</blockquote>
+      <cite>— Nadeesha Perera, Founder, Kopi & Co.</cite>
+      <p style="margin-top:22px; color: rgba(61,43,31,0.75);">What began as a single roaster in a rented kitchen is now a corner of Kalutara where regulars leave their mug on the same shelf. Read the full story, the people behind it, and where the beans come from.</p>
+      <a href="about.html" class="btn btn-ghost" style="margin-top:24px; border-color:var(--ink);">Our story</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-dim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Word of mouth</p>
+      <h2>What regulars say</h2>
+    </div>
+    <div class="review-row">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>Best flat white in Kalutara, hands down. The staff actually remember my name and how I take my coffee.</p>
+        <div class="review-who"><span class="dot"></span> Ishara W. — regular since 2021</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>I come here to work most mornings. Wifi's solid, the light by the window is perfect, and the cake is dangerous.</p>
+        <div class="review-who"><span class="dot"></span> Tharindu K. — local freelancer</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>Took my parents here for their anniversary breakfast. Quiet, warm, and the pour-over was genuinely excellent.</p>
+        <div class="review-who"><span class="dot"></span> Dilani S. — visiting from Galle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Got a question, a booking, or feedback for us?</h2>
+      <a href="contact.html" class="btn btn-dark">Send us a message</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="mark">Kopi</span> &amp; Co.</div>
+        <p class="footer-tag">A specialty coffee house in Kalutara — small-batch roasts, all-day breakfast, and a room worth lingering in.</p>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#">No. 24, Galle Road, Kalutara</a>
+        <a href="tel:+94342234567">+94 34 223 4567</a>
+        <a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <a href="#" style="pointer-events:none;">Mon – Fri: 6.30am – 8pm</a>
+        <a href="#" style="pointer-events:none;">Sat – Sun: 7am – 9pm</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© <span data-year></span> Kopi & Co. All rights reserved.</span>
+      <span>Made with care in Kalutara.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Kopi & Co.</title>
+<meta name="description" content="Send Kopi & Co. a message, ask a question, or find directions and opening hours for our Kalutara coffee house.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/kopi&co logo2.png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 56px;
+    align-items:flex-start;
+  }
+  .info-card{
+    background: var(--espresso);
+    color: var(--cream);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+  }
+  .info-card h3{ font-size: var(--step-2); color:var(--cream); margin-bottom: 10px; }
+  .info-card p.lede2{ color: rgba(250,246,238,0.72); margin-bottom: 32px; font-size:0.95rem; }
+  .info-row{
+    display:flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line-on-dark);
+  }
+  .info-row:first-of-type{ border-top:none; }
+  .info-row .ic{
+    width:38px; height:38px;
+    border-radius:50%;
+    background: rgba(250,246,238,0.08);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .info-row .ic svg{ width:18px; height:18px; color: var(--copper); }
+  .info-row h4{ font-size:0.92rem; color: var(--cream); margin-bottom:4px; }
+  .info-row p, .info-row a{ font-size: 0.88rem; color: rgba(250,246,238,0.68); display:block; }
+  .info-row a:hover{ color: var(--copper); }
+
+  /* Form */
+  .form-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 44px;
+  }
+  .form-card h3{ font-size: var(--step-2); margin-bottom:8px; }
+  .form-card .sub{ color: rgba(61,43,31,0.62); font-size:0.94rem; margin-bottom: 32px; }
+
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .field{ margin-bottom: 22px; }
+  .field label{
+    display:block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .field label .opt{ color: rgba(61,43,31,0.4); text-transform:none; letter-spacing:0; }
+  .field input,
+  .field select,
+  .field textarea{
+    width:100%;
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--line);
+    background: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.96rem;
+    color: var(--ink);
+    transition: border-color .2s;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    outline:none;
+    border-color: var(--copper);
+  }
+  .field textarea{ resize: vertical; min-height: 130px; }
+  .field [aria-invalid="true"]{ border-color: #C24A3C; }
+  .field-error{
+    display:block;
+    font-size: 0.8rem;
+    color: #C24A3C;
+    margin-top: 6px;
+    min-height: 1em;
+  }
+
+  .form-status{
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+  }
+  .form-status[data-kind="success"]{ background: rgba(122,139,111,0.16); color: var(--sage-deep); }
+  .form-status[data-kind="error"]{ background: rgba(194,74,60,0.12); color: #C24A3C; }
+  .form-status[data-kind="pending"]{ background: var(--cream-dim); color: var(--ink); }
+
+  .form-foot{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .form-foot .note{ font-size: 0.82rem; color: rgba(61,43,31,0.5); }
+
+  /* Map + hours */
+  .visit-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items:center; }
+  .map-frame{
+    border-radius: var(--radius-lg);
+    overflow:hidden;
+    box-shadow: var(--shadow-soft);
+    aspect-ratio: 16/11;
+  }
+  .map-frame iframe{ width:100%; height:100%; border:0; }
+  .hours-card{ background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:32px; }
+  .hours-row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed var(--line); font-size:0.95rem; }
+  .hours-row:last-child{ border-bottom:none; }
+  .hours-row span:first-child{ color: rgba(61,43,31,0.7); }
+  .hours-row span:last-child{ font-family: var(--font-mono); font-weight:600; }
+
+  @media (max-width: 980px){
+    .contact-grid{ grid-template-columns:1fr; }
+    .field-row{ grid-template-columns:1fr; }
+    .visit-grid{ grid-template-columns:1fr; }
+    .form-card{ padding:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand"><span class="mark">Kopi</span>&nbsp;&amp; Co.</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+      <li><a href="contact.html#visit" class="nav-cta">Find Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="grain"></div>
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--latte);">We'd like to hear from you</p>
+    <h1>Get in touch</h1>
+    <p class="lede">Questions, feedback, catering requests, or just want to say hello — send us a message and we'll get back to you within a business day.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap contact-grid">
+
+    <div class="info-card reveal">
+      <h3>Let's talk</h3>
+      <p class="lede2">Prefer to skip the form? Reach us directly through any of these.</p>
+
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h4>Visit</h4><p>No. 24, Galle Road, Kalutara, Sri Lanka</p></div>
+      </div>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L8 10.1a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7a2 2 0 0 1 1.6 2Z"/></svg></div>
+        <div><h4>Call</h4><a href="tel:+94342234567">+94 34 223 4567</a></div>
+      </div>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4V4Z"/><path d="m4 6 8 7 8-7"/></svg></div>
+        <div><h4>Email</h4><a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a></div>
+      </div>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><h4>Hours</h4><p>Mon–Fri 6.30am–8pm · Sat–Sun 7am–9pm</p></div>
+      </div>
+
+      <div style="margin-top:32px;">
+        <h4 style="font-size:0.85rem; color:var(--cream); margin-bottom:14px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.08em;">Follow along</h4>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h3>Send a message</h3>
+      <p class="sub">Fill this in and it'll land straight in our inbox — no account or app needed.</p>
+
+      <div id="form-status" class="form-status" role="status" hidden></div>
+
+      <form id="contact-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Ishara Wickramasinghe">
+            <span class="field-error" data-error-for="name"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com">
+            <span class="field-error" data-error-for="email"></span>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone <span class="opt">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="07X XXX XXXX">
+            <span class="field-error" data-error-for="phone"></span>
+          </div>
+          <div class="field">
+            <label for="subject">What's this about</label>
+            <select id="subject" name="subject">
+              <option value="">Choose a topic</option>
+              <option value="General enquiry">General enquiry</option>
+              <option value="Feedback">Feedback about a visit</option>
+              <option value="Catering / Events">Catering or private events</option>
+              <option value="Franchise interest">Franchise interest</option>
+              <option value="Careers">Careers</option>
+              <option value="Other">Something else</option>
+            </select>
+            <span class="field-error" data-error-for="subject"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us a little about what you need…"></textarea>
+          <span class="field-error" data-error-for="message"></span>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <span class="note">We typically reply within one business day.</span>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-cream-dim" id="visit">
+  <div class="wrap visit-grid">
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Kalutara%2C%20Sri%20Lanka&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Map showing Kopi & Co. location in Kalutara">
+      </iframe>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Opening hours</p>
+      <h2 style="font-size:var(--step-2); margin:14px 0 24px;">Drop by whenever</h2>
+      <div class="hours-card">
+        <div class="hours-row"><span>Monday – Friday</span><span>6.30am – 8.00pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>7.00am – 9.00pm</span></div>
+        <div class="hours-row"><span>Sunday</span><span>7.00am – 9.00pm</span></div>
+        <div class="hours-row"><span>Public holidays</span><span>8.00am – 6.00pm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="mark">Kopi</span> &amp; Co.</div>
+        <p class="footer-tag">A specialty coffee house in Kalutara — small-batch roasts, all-day breakfast, and a room worth lingering in.</p>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#">No. 24, Galle Road, Kalutara</a>
+        <a href="tel:+94342234567">+94 34 223 4567</a>
+        <a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <a href="#" style="pointer-events:none;">Mon – Fri: 6.30am – 8pm</a>
+        <a href="#" style="pointer-events:none;">Sat – Sun: 7am – 9pm</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© <span data-year></span> Kopi & Co. All rights reserved.</span>
+      <span>Made with care in Kalutara.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

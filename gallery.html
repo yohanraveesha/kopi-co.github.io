@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Kopi & Co.</title>
+<meta name="description" content="A look inside Kopi & Co. — the room, the roastery, the plates, and the people who make it run.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/kopi&co logo2.png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .gallery-filters{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 40px;
+  }
+  .gallery-filters button{
+    font-family: var(--font-mono);
+    font-size:0.85rem;
+    padding: 10px 18px;
+    border-radius:999px;
+    border: 1.5px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    transition: all .2s var(--ease);
+  }
+  .gallery-filters button:hover{ border-color: var(--copper); }
+  .gallery-filters button.active{ background: var(--espresso); color: var(--cream); border-color: var(--espresso); }
+
+  .masonry{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: 18px;
+  }
+  .g-item{
+    border-radius: var(--radius-md);
+    overflow:hidden;
+    position:relative;
+    cursor: zoom-in;
+  }
+  .g-item img{ width:100%; height:100%; object-fit:cover; transition: transform .5s var(--ease); }
+  .g-item:hover img{ transform: scale(1.07); }
+  .g-item .tag{
+    position:absolute; bottom:12px; left:12px;
+    background: rgba(35,25,20,0.72);
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    border-radius: 999px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .g-tall{ grid-row: span 2; }
+  .g-wide{ grid-column: span 2; }
+
+  /* Lightbox */
+  .lightbox{
+    position: fixed; inset:0;
+    background: rgba(20,14,10,0.92);
+    display:flex; align-items:center; justify-content:center;
+    z-index: 1000;
+    opacity:0; pointer-events:none;
+    transition: opacity .25s var(--ease);
+    padding: 40px;
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox img{ max-width: min(900px, 90vw); max-height: 84vh; border-radius: var(--radius-md); box-shadow: var(--shadow-deep); }
+  .lightbox-close{
+    position:absolute; top:24px; right:28px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background: rgba(250,246,238,0.12);
+    border:none;
+    color: var(--cream);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-close:hover{ background: var(--copper); }
+  .lightbox-close svg{ width:20px; height:20px; }
+
+  @media (max-width: 980px){
+    .masonry{ grid-template-columns: repeat(2,1fr); grid-auto-rows: 180px; }
+    .g-wide{ grid-column: span 2; }
+  }
+  @media (max-width:560px){
+    .masonry{ grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .g-wide, .g-tall{ grid-column: span 1; grid-row: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand"><span class="mark">Kopi</span>&nbsp;&amp; Co.</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="gallery.html" aria-current="page">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html#visit" class="nav-cta">Find Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="grain"></div>
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--latte);">A look inside</p>
+    <h1>The room, the roast, the regulars</h1>
+    <p class="lede">A few frames from the shop floor — tap any photo to see it larger.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gallery-filters" role="tablist" aria-label="Filter gallery">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="space">The Space</button>
+      <button data-filter="drinks">Drinks</button>
+      <button data-filter="food">Food</button>
+      <button data-filter="people">People</button>
+    </div>
+
+    <div class="masonry">
+      <div class="g-item g-wide g-tall" data-cat="space"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=900&q=80" alt="Interior seating area of Kopi & Co."><span class="tag">Space</span></div>
+      <div class="g-item" data-cat="drinks"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Latte art close up"><span class="tag">Drinks</span></div>
+      <div class="g-item" data-cat="people"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Barista pulling an espresso shot"><span class="tag">People</span></div>
+      <div class="g-item g-tall" data-cat="food"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80" alt="Breakfast plate with avocado toast"><span class="tag">Food</span></div>
+      <div class="g-item" data-cat="drinks"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Flat white in a ceramic cup"><span class="tag">Drinks</span></div>
+      <div class="g-item" data-cat="space"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="Window seating with natural light"><span class="tag">Space</span></div>
+      <div class="g-item g-wide" data-cat="food"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80" alt="Coffee cake slice on a plate"><span class="tag">Food</span></div>
+      <div class="g-item" data-cat="people"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=80" alt="Customers chatting over coffee"><span class="tag">People</span></div>
+      <div class="g-item" data-cat="drinks"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&q=80" alt="Pour-over coffee being brewed"><span class="tag">Drinks</span></div>
+      <div class="g-item g-tall" data-cat="space"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=80" alt="Cafe counter and shelving"><span class="tag">Space</span></div>
+      <div class="g-item" data-cat="people"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Barista behind the counter"><span class="tag">People</span></div>
+      <div class="g-item" data-cat="food"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="Croissant and pastries on display"><span class="tag">Food</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="mark">Kopi</span> &amp; Co.</div>
+        <p class="footer-tag">A specialty coffee house in Kalutara — small-batch roasts, all-day breakfast, and a room worth lingering in.</p>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#">No. 24, Galle Road, Kalutara</a>
+        <a href="tel:+94342234567">+94 34 223 4567</a>
+        <a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <a href="#" style="pointer-events:none;">Mon – Fri: 6.30am – 8pm</a>
+        <a href="#" style="pointer-events:none;">Sat – Sun: 7am – 9pm</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© <span data-year></span> Kopi & Co. All rights reserved.</span>
+      <span>Made with care in Kalutara.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // Gallery filtering
+  const filterBtns = document.querySelectorAll(".gallery-filters button");
+  const items = document.querySelectorAll(".g-item");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        item.style.display = (filter === "all" || item.dataset.cat === filter) ? "" : "none";
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.getElementById("lightbox-close");
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      const img = item.querySelector("img");
+      lightboxImg.src = img.src.replace("w=600", "w=1200").replace("w=900", "w=1400");
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add("open");
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove("open"); }
+  closeBtn.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+</script>
+</body>
+</html>

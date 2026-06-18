@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Kopi & Co.</title>
+<meta name="description" content="The full Kopi & Co. menu — espresso, filter coffee, tea, breakfast, and pastry, all made fresh in our Kalutara coffee house.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/kopi&co logo2.png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .menu-tabs{
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    position: sticky;
+    top: 78px;
+    background: var(--cream);
+    padding: 14px 0;
+    z-index: 20;
+  }
+  .menu-tab{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    transition: all .2s var(--ease);
+  }
+  .menu-tab:hover{ border-color: var(--copper); }
+  .menu-tab.active{
+    background: var(--espresso);
+    color: var(--cream);
+    border-color: var(--espresso);
+  }
+
+  .menu-category{ margin-bottom: 72px; }
+  .menu-category-head{
+    display:flex;
+    align-items:baseline;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .menu-category-head h2{ font-size: var(--step-2); }
+  .menu-category-head .count{ font-family: var(--font-mono); font-size:0.82rem; color: rgba(61,43,31,0.5); }
+
+  .menu-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; }
+  .menu-row{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .menu-row-name{ flex-shrink: 0; }
+  .menu-row-name h3{ font-size: 1.05rem; font-weight:600; }
+  .menu-row-name p{ font-size: 0.85rem; color: rgba(61,43,31,0.58); margin-top: 4px; max-width: 32ch; }
+  .menu-row-price{
+    font-family: var(--font-mono);
+    color: var(--copper-deep);
+    font-weight:600;
+    white-space: nowrap;
+    flex-shrink:0;
+  }
+  .badge{
+    display:inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    background: var(--sage);
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge.veg{ background: var(--sage); }
+  .badge.popular{ background: var(--copper); }
+
+  .receipt-note{
+    background: var(--espresso);
+    color: var(--cream);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    line-height:1.8;
+    max-width: 460px;
+  }
+  .receipt-note .line{ display:flex; justify-content:space-between; border-bottom:1px dashed var(--line-on-dark); padding:6px 0; }
+
+  @media (max-width: 760px){
+    .menu-list{ grid-template-columns: 1fr; }
+    .menu-tabs{ top:64px; overflow-x:auto; flex-wrap:nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand"><span class="mark">Kopi</span>&nbsp;&amp; Co.</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" aria-current="page">Menu</a></li>
+      <li><a href="about.html">Our Story</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html#visit" class="nav-cta">Find Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+
+<section class="page-hero">
+  <div class="grain"></div>
+
+  <div class="wrap hero-content">
+
+    <div class="hero-text">
+      <p class="eyebrow" style="color:var(--latte);">
+        <span style="display:none"></span>What we serve
+      </p>
+
+      <h1>The menu</h1>
+
+      <p class="lede">
+        Everything's made to order — espresso pulled fresh, filter brewed by hand, and pastry from our own kitchen each morning. Prices in Sri Lankan Rupees.
+      </p>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/images/coffee.jpg" alt="Coffee cup">
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+      <button class="menu-tab active" data-target="cat-espresso">Espresso</button>
+      <button class="menu-tab" data-target="cat-filter">Filter & Cold</button>
+      <button class="menu-tab" data-target="cat-tea">Tea</button>
+      <button class="menu-tab" data-target="cat-breakfast">Breakfast</button>
+      <button class="menu-tab" data-target="cat-pastry">Pastry & Cake</button>
+    </div>
+
+    <div class="menu-category" id="cat-espresso">
+      <div class="menu-category-head">
+        <h2>Espresso Bar</h2>
+        <span class="count">07 drinks</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Espresso<span class="badge popular">Popular</span></h3><p>Single or double shot, served neat.</p></div>
+          <div class="menu-row-price">Rs. 380</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Americano</h3><p>Espresso lengthened with hot water.</p></div>
+          <div class="menu-row-price">Rs. 420</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Cappuccino</h3><p>Equal parts espresso, milk, and foam.</p></div>
+          <div class="menu-row-price">Rs. 520</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Flat White<span class="badge popular">Popular</span></h3><p>Double shot, steamed milk, thin microfoam.</p></div>
+          <div class="menu-row-price">Rs. 580</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Latte</h3><p>Espresso with steamed milk, light foam.</p></div>
+          <div class="menu-row-price">Rs. 560</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Mocha</h3><p>Espresso, steamed milk, house dark chocolate.</p></div>
+          <div class="menu-row-price">Rs. 620</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Spanish Latte</h3><p>Espresso, condensed milk, steamed milk.</p></div>
+          <div class="menu-row-price">Rs. 600</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-filter">
+      <div class="menu-category-head">
+        <h2>Filter & Cold Brew</h2>
+        <span class="count">05 drinks</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Estate Pour-Over<span class="badge popular">Popular</span></h3><p>Single-origin, rotates monthly — ask what's pouring.</p></div>
+          <div class="menu-row-price">Rs. 650</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Cold Brew</h3><p>Steeped 18 hours, served over ice.</p></div>
+          <div class="menu-row-price">Rs. 550</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Iced Latte</h3><p>Double shot over ice and cold milk.</p></div>
+          <div class="menu-row-price">Rs. 590</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Affogato</h3><p>A shot of espresso over vanilla bean ice cream.</p></div>
+          <div class="menu-row-price">Rs. 480</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Frappé</h3><p>Blended cold coffee, whipped cream, your choice of syrup.</p></div>
+          <div class="menu-row-price">Rs. 640</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-tea">
+      <div class="menu-category-head">
+        <h2>Tea & Other</h2>
+        <span class="count">04 drinks</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Ceylon High-Grown<span class="badge veg">Local</span></h3><p>Loose-leaf black tea from the hill country.</p></div>
+          <div class="menu-row-price">Rs. 320</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Masala Chai</h3><p>House-spiced, steeped with milk.</p></div>
+          <div class="menu-row-price">Rs. 380</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Lemongrass & Ginger</h3><p>Caffeine-free, served hot or iced.</p></div>
+          <div class="menu-row-price">Rs. 350</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Hot Chocolate</h3><p>House dark chocolate, steamed milk.</p></div>
+          <div class="menu-row-price">Rs. 480</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-breakfast">
+      <div class="menu-category-head">
+        <h2>All-Day Breakfast</h2>
+        <span class="count">06 plates</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Egg & Avocado Toast<span class="badge veg">Veg</span></h3><p>Sourdough, smashed avocado, poached egg, chilli flake.</p></div>
+          <div class="menu-row-price">Rs. 980</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Kiribath Plate<span class="badge veg">Local</span></h3><p>Coconut milk rice, lunu miris, jaggery.</p></div>
+          <div class="menu-row-price">Rs. 750</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Shakshuka<span class="badge popular">Popular</span></h3><p>Eggs baked in spiced tomato, served with toast.</p></div>
+          <div class="menu-row-price">Rs. 1,050</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Granola Bowl<span class="badge veg">Veg</span></h3><p>House granola, yoghurt, seasonal fruit, honey.</p></div>
+          <div class="menu-row-price">Rs. 820</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Club Sandwich</h3><p>Chicken, egg, lettuce, tomato, toasted sourdough.</p></div>
+          <div class="menu-row-price">Rs. 990</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>String Hopper Stack<span class="badge veg">Local</span></h3><p>With dhal curry and coconut sambol.</p></div>
+          <div class="menu-row-price">Rs. 880</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category" id="cat-pastry">
+      <div class="menu-category-head">
+        <h2>Pastry & Cake</h2>
+        <span class="count">05 items</span>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Kopi Cake Slice<span class="badge popular">Popular</span></h3><p>Coffee sponge, espresso buttercream.</p></div>
+          <div class="menu-row-price">Rs. 420</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Butter Croissant</h3><p>Laminated fresh each morning.</p></div>
+          <div class="menu-row-price">Rs. 350</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Watalappan Tart<span class="badge veg">Local</span></h3><p>Jaggery custard in a short crust shell.</p></div>
+          <div class="menu-row-price">Rs. 390</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Banana Walnut Loaf</h3><p>Sliced, lightly toasted on request.</p></div>
+          <div class="menu-row-price">Rs. 360</div>
+        </div>
+        <div class="menu-row">
+          <div class="menu-row-name"><h3>Chocolate Brownie</h3><p>Dense, fudgy, served warm.</p></div>
+          <div class="menu-row-price">Rs. 400</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="receipt-note reveal">
+      <div class="line"><span>SERVICE</span><span>Not included</span></div>
+      <div class="line"><span>ALLERGIES</span><span>Ask your barista</span></div>
+      <div class="line"><span>DIETARY</span><span>Veg & dairy-free milk available</span></div>
+      <div class="line" style="border-bottom:none;"><span>PRICES</span><span>Inclusive of tax</span></div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="mark">Kopi</span> &amp; Co.</div>
+        <p class="footer-tag">A specialty coffee house in Kalutara — small-batch roasts, all-day breakfast, and a room worth lingering in.</p>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#">No. 24, Galle Road, Kalutara</a>
+        <a href="tel:+94342234567">+94 34 223 4567</a>
+        <a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <a href="#" style="pointer-events:none;">Mon – Fri: 6.30am – 8pm</a>
+        <a href="#" style="pointer-events:none;">Sat – Sun: 7am – 9pm</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© <span data-year></span> Kopi & Co. All rights reserved.</span>
+      <span>Made with care in Kalutara.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // Menu tab filtering
+  const tabs = document.querySelectorAll(".menu-tab");
+  const cats = document.querySelectorAll(".menu-category");
+  function showCat(id){
+    cats.forEach(c => c.style.display = (c.id === id ? "" : "none"));
+    tabs.forEach(t => t.classList.toggle("active", t.dataset.target === id));
+  }
+  tabs.forEach(tab => tab.addEventListener("click", () => showCat(tab.dataset.target)));
+  showCat("cat-espresso");
+</script>
+</body>
+</html>
