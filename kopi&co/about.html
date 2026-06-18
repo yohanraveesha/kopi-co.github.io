@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — Kopi & Co.</title>
+<meta name="description" content="How Kopi & Co. started as one roaster in a rented kitchen and grew into a coffee house at the heart of Kalutara.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/images/kopi&co logo2.png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .timeline{
+    position: relative;
+    margin-top: 20px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 92px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+  }
+  .timeline-row{
+    display:grid;
+    grid-template-columns: 92px 1fr;
+    gap: 32px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .timeline-row:last-child{ border-bottom:none; }
+  .timeline-year{
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--copper-deep);
+    position: relative;
+  }
+  .timeline-year::before{
+    content:"";
+    position:absolute;
+    right: -36.5px;
+    top: 6px;
+    width: 9px; height: 9px;
+    border-radius:50%;
+    background: var(--copper);
+    border: 3px solid var(--cream);
+  }
+  .timeline-row h3{ font-size: 1.2rem; margin-bottom: 8px; }
+  .timeline-row p{ color: rgba(61,43,31,0.72); max-width: 56ch; }
+
+  .values-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
+  .value-card{
+    background:#fff; border:1px solid var(--line); border-radius: var(--radius-md);
+    padding: 28px;
+  }
+  .value-card .num{ font-family: var(--font-mono); color: var(--copper); font-size:0.85rem; margin-bottom:14px; display:block; }
+  .value-card h3{ font-size:1.1rem; margin-bottom:8px; }
+  .value-card p{ font-size:0.92rem; color: rgba(61,43,31,0.7); }
+
+  .team-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:24px; }
+  .team-card img{ border-radius: var(--radius-md); aspect-ratio: 1/1.05; object-fit:cover; margin-bottom: 16px; }
+  .team-card h3{ font-size:1.05rem; }
+  .team-card p{ font-size:0.85rem; color: var(--copper-deep); font-family: var(--font-mono); margin-top:2px; }
+
+  .source-map{ display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items:center; }
+  .source-list{ display:flex; flex-direction:column; gap:18px; }
+  .source-item{ display:flex; gap:16px; align-items:flex-start; }
+  .source-item .dot{ width:10px; height:10px; border-radius:50%; background: var(--sage); margin-top:7px; flex-shrink:0; }
+  .source-item h4{ font-size:1rem; }
+  .source-item p{ font-size:0.88rem; color: rgba(61,43,31,0.65); }
+
+  @media (max-width: 880px){
+    .values-grid{ grid-template-columns:1fr 1fr; }
+    .team-grid{ grid-template-columns:1fr 1fr; }
+    .source-map{ grid-template-columns:1fr; }
+    .timeline::before{ left:60px; }
+    .timeline-row{ grid-template-columns: 60px 1fr; gap:18px; }
+    .timeline-year::before{ right:-24.5px; }
+  }
+  @media (max-width:560px){
+    .values-grid{ grid-template-columns:1fr; }
+    .team-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand"><span class="mark">Kopi</span>&nbsp;&amp; Co.</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html" aria-current="page">Our Story</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html#visit" class="nav-cta">Find Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="grain"></div>
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--latte);">Since 2018</p>
+    <h1>One roaster, a rented kitchen, and a stubborn idea</h1>
+    <p class="lede">Kopi & Co. started small and stayed personal on purpose. Here's the short version of how we got here.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">The timeline</p>
+      <h2>How we got here</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-row reveal">
+        <div class="timeline-year">2018</div>
+        <div>
+          <h3>&nbsp; A kitchen, a hand grinder, and Saturday markets</h3>
+          <p>Nadeesha started roasting small batches at home and selling bags at the Kalutara weekend market, alongside a day job. The first roaster held 1kg at a time.</p>
+        </div>
+      </div>
+      <div class="timeline-row reveal">
+        <div class="timeline-year">2020</div>
+        <div>
+          <h3>&nbsp; The first counter</h3>
+          <p>A four-table shopfront on Galle Road opened with one espresso machine, bought secondhand and rebuilt by hand. Most days we sold out by 2pm.</p>
+        </div>
+      </div>
+      <div class="timeline-row reveal">
+        <div class="timeline-year">2022</div>
+        <div>
+          <h3>&nbsp; Direct relationships with growers</h3>
+          <p>We started buying directly from two estates in Matale and Kandy, paying above the standard rate and visiting the farms each season.</p>
+        </div>
+      </div>
+      <div class="timeline-row reveal">
+        <div class="timeline-year">2024</div>
+        <div>
+          <h3>&nbsp; The room you sit in today</h3>
+          <p>We knocked through to the unit next door, added the window seating and the kitchen, and started serving breakfast all day.</p>
+        </div>
+      </div>
+      <div class="timeline-row reveal">
+        <div class="timeline-year">Today</div>
+        <div>
+          <h3>&nbsp; Still the same crew</h3>
+          <p>Six years on, three of our first five hires are still behind the counter. We're still roasting twice a week, just in slightly bigger batches.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-dim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">What we hold onto</p>
+      <h2>Three things that haven't changed</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="num">01</span>
+        <h3>Pay growers properly</h3>
+        <p>We buy direct, above standard market rate, and visit the estates we source from at least once a season.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="num">02</span>
+        <h3>Roast in small lots</h3>
+        <p>Never more than 12kg at a time, twice weekly, so what's in your cup was roasted within the week.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="num">03</span>
+        <h3>Know your name</h3>
+        <p>We're not trying to be everywhere. We'd rather have one room where the staff actually know the regulars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap source-map">
+    <div class="reveal">
+      <p class="eyebrow">Where it comes from</p>
+      <h2 style="font-size:var(--step-3); margin-top:14px; margin-bottom:24px;">Two estates, one relationship each</h2>
+      <div class="source-list">
+        <div class="source-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Matale Estate, mid-country</h4>
+            <p>Our house espresso blend base — chocolate, low acidity, grown at around 600m.</p>
+          </div>
+        </div>
+        <div class="source-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Kandy Hills Estate, high-grown</h4>
+            <p>Used for our rotating pour-over — brighter, floral, harvested once a year.</p>
+          </div>
+        </div>
+        <div class="source-item">
+          <span class="dot"></span>
+          <div>
+            <h4>Roasted on-site in Kalutara</h4>
+            <p>Every batch is roasted at the shop, logged, and tasted before it goes on the shelf.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="reveal" src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=800&q=80" alt="Coffee beans being inspected at the roastery" style="border-radius:var(--radius-lg); box-shadow:var(--shadow-soft);">
+  </div>
+</section>
+
+<section class="bg-cream-dim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Behind the counter</p>
+      <h2>The people pouring your coffee</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80" alt="Portrait of Nadeesha Perera">
+        <h3>Nadeesha Perera</h3>
+        <p>Founder & Roaster</p>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Portrait of Kasun Jayawardena">
+        <h3>Kasun Jayawardena</h3>
+        <p>Head Barista</p>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80" alt="Portrait of Amaya Fernando">
+        <h3>Amaya Fernando</h3>
+        <p>Kitchen Lead</p>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=500&q=80" alt="Portrait of Ruwan Silva">
+        <h3>Ruwan Silva</h3>
+        <p>Front of House</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal" style="background:var(--copper); border-radius:var(--radius-lg); padding:56px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap; color:var(--espresso);">
+      <h2 style="font-size:var(--step-2); max-width:22ch; color:var(--espresso);">Come see the room for yourself</h2>
+      <a href="contact.html" class="btn btn-dark">Plan your visit</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="mark">Kopi</span> &amp; Co.</div>
+        <p class="footer-tag">A specialty coffee house in Kalutara — small-batch roasts, all-day breakfast, and a room worth lingering in.</p>
+        <div class="social-row">
+          <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg></a>
+          <a href="https://tiktok.com" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.8 3.5 4 3.8v2.7c-1.5 0-2.9-.4-4-1.2v6.6a5.1 5.1 0 1 1-4.4-5v2.8a2.3 2.3 0 1 0 1.6 2.2V3h2.8Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">Our Story</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#">No. 24, Galle Road, Kalutara</a>
+        <a href="tel:+94342234567">+94 34 223 4567</a>
+        <a href="mailto:hello@kopiandco.lk">hello@kopiandco.lk</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <a href="#" style="pointer-events:none;">Mon – Fri: 6.30am – 8pm</a>
+        <a href="#" style="pointer-events:none;">Sat – Sun: 7am – 9pm</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© <span data-year></span> Kopi & Co. All rights reserved.</span>
+      <span>Made with care in Kalutara.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
